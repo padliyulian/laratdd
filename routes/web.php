@@ -11,8 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function () { return view('welcome'); });
+
+Route::get('/tasks', 'TaskController@index');
+Route::get('/tasks/{task}','TaskController@show');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/tasks-create','TaskController@create');
+    Route::post('/tasks','TaskController@store');
+    Route::get('/tasks/{task}/edit','TaskController@edit');
+    Route::patch('/tasks/{task}','TaskController@update');
+    Route::delete('/tasks/{task}','TaskController@destroy');
 });
 
 Auth::routes();
