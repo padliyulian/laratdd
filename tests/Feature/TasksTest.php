@@ -66,7 +66,7 @@ class TasksTest extends TestCase
         
         //And a task which is not created by the user
         $task = factory('App\Models\Task')->create();
-        $task->title = "Updated Title";
+        $task->title = 'Updated Title';
 
         //When the user hit's the endpoint to update the task
         $response = $this->patch('/tasks/'.$task->id, $task->toArray());
@@ -81,7 +81,7 @@ class TasksTest extends TestCase
 
         //And a task which is created by the user
         $task = factory('App\Models\Task')->create(['user_id' => auth()->user()->id]);
-        $task->title = "Updated Title";
+        $task->title = 'Updated Title';
 
         //When the user hit's the endpoint to update the task
         $this->patch('/tasks/'.$task->id, $task->toArray());
